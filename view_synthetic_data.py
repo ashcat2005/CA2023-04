@@ -27,13 +27,25 @@ def plot(image_data, a, cmap='inferno'):
 
 
 
-images_data = np.load('images_data.npy')
-labels = np.load('labels.npy')
+images_data = np.load('data/images_data.npy')
+labels = np.load('data/labels.npy')
 
-print(images_data.shape)
 
-for i in range(10):
+for i in np.random.randint(0, len(images_data), 7):
     plot(images_data[i,:,:], labels[i])
 
-print(images_data.shape)
+N = 10
+indices = np.random.randint(0, len(images_data), [N,N])
+fig, ax = plt.subplots(N, N, figsize=(8, 8))
+for i in range(N):
+        for j in range(N):
+                ax[i,j].imshow(images_data[indices[i,j]].T, cmap = 'inferno' , origin='lower')
+                ax[i,j].tick_params(left = False, right = False , labelleft = False ,
+                        labelbottom = False, bottom = False)
+plt.show()
+
+
+
+
+print('\n',images_data.shape)
 
